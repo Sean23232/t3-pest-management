@@ -1,0 +1,105 @@
+@import '@fontsource/newsreader/400.css';
+@import '@fontsource/newsreader/500.css';
+@import '@fontsource/newsreader/600.css';
+@import '@fontsource/newsreader/400-italic.css';
+@import '@fontsource/newsreader/500-italic.css';
+@import '@fontsource/plus-jakarta-sans/400.css';
+@import '@fontsource/plus-jakarta-sans/500.css';
+@import '@fontsource/plus-jakarta-sans/600.css';
+@import '@fontsource/plus-jakarta-sans/700.css';
+@import 'tailwindcss';
+
+:root {
+  --t3-navy: #101D2B;
+  --t3-charcoal: #18232D;
+  --t3-gold: #C69A53;
+  --t3-gold-hover: #D4AC6A;
+  --t3-ivory: #F7F6F2;
+  --t3-white: #FFFFFF;
+  --t3-secondary: #87919B;
+  --t3-secondary-dark-ink: #576370;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background-color: var(--t3-navy);
+    color: var(--t3-navy);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1,
+  h2,
+  h3,
+  .font-editorial {
+    font-family: 'Newsreader', Georgia, 'Times New Roman', serif;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--t3-gold);
+    outline-offset: 3px;
+  }
+}
+
+.font-editorial {
+  font-family: 'Newsreader', Georgia, 'Times New Roman', serif;
+}
+
+.font-sans-ui {
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+/* Subtle editorial reveal motion */
+.reveal-section {
+  opacity: 0;
+  transform: translateY(16px);
+  transition:
+    opacity 650ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 650ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.reveal-section.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .reveal-section {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+/* Hairline architectural grid shimmer / subtle elevation */
+.architectural-frame {
+  position: relative;
+}
+
+.architectural-frame::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border: 1px solid rgba(198, 154, 83, 0.24);
+  pointer-events: none;
+}
+
+/* Accordion smooth height utility */
+.accordion-content {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 300ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.accordion-content[data-open='true'] {
+  grid-template-rows: 1fr;
+}
+
+.accordion-inner {
+  overflow: hidden;
+}
